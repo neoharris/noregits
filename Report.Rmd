@@ -11,4 +11,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Report
 
+## Cleaning
 
+## Descriptive Analysis
+
+## Inferential Statistics
+
+## Conclusion
+
+## Discussion
