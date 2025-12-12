@@ -106,7 +106,4 @@ smoking <- xtabs(~MH+Smoker, total)
 p_smoking <- prop.table(smoking)
 print(p_smoking)
 
-library(esquisse)
-esquisser(total)
-
 ```
