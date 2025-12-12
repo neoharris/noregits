@@ -93,6 +93,8 @@ summary(binreg)
 
 ## Secondary Task
 
+Assess the prevalence of health issues in the cohort (adjusting for other factors?).
+
 ```{r}
 
 #Secondary analysis: assess the prevalence of health issues in the cohort 

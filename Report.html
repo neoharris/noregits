@@ -13,7 +13,7 @@
 
 <meta name="date" content="2025-12-12" />
 
-<title>Report</title>
+<title>Do individuals with ongoing health issues believe their condition will get worse while waiting for treatment?</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1397,6 +1397,116 @@ ul.task-list{list-style: none;}
 
 
 
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+}
+pre.numberSource { margin-left: 3em; padding-left: 4px; }
+div.sourceCode
+{ color: #cccccc; background-color: #303030; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } 
+code span.an { color: #7f9f7f; font-weight: bold; } 
+code span.at { } 
+code span.bn { color: #dca3a3; } 
+code span.bu { } 
+code span.cf { color: #f0dfaf; } 
+code span.ch { color: #dca3a3; } 
+code span.cn { color: #dca3a3; font-weight: bold; } 
+code span.co { color: #7f9f7f; } 
+code span.cv { color: #7f9f7f; font-weight: bold; } 
+code span.do { color: #7f9f7f; } 
+code span.dt { color: #dfdfbf; } 
+code span.dv { color: #dcdccc; } 
+code span.er { color: #c3bf9f; } 
+code span.ex { } 
+code span.fl { color: #c0bed1; } 
+code span.fu { color: #efef8f; } 
+code span.im { } 
+code span.in { color: #7f9f7f; font-weight: bold; } 
+code span.kw { color: #f0dfaf; } 
+code span.op { color: #f0efd0; } 
+code span.ot { color: #efef8f; } 
+code span.pp { color: #ffcfaf; font-weight: bold; } 
+code span.sc { color: #dca3a3; } 
+code span.ss { color: #cc9393; } 
+code span.st { color: #cc9393; } 
+code span.va { } 
+code span.vs { color: #cc9393; } 
+code span.wa { color: #7f9f7f; font-weight: bold; } 
+.sourceCode .row {
+width: 100%;
+}
+.sourceCode {
+overflow-x: auto;
+}
+.code-folding-btn {
+margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 <style type="text/css">
@@ -1576,33 +1686,120 @@ border-radius: 0px;
 
 
 
-<h1 class="title toc-ignore">Report</h1>
+<h1 class="title toc-ignore">Do individuals with ongoing health issues
+believe their condition will get worse while waiting for treatment?</h1>
 <h4 class="author">NoRegits</h4>
 <h4 class="date">2025-12-12</h4>
 
 </div>
 
 
-<div id="report" class="section level2">
-<h2>Report</h2>
-</div>
 <div id="cleaning" class="section level2">
 <h2>Cleaning</h2>
+<p>We were given 4 datasets which consisted of data around physical
+health, mental health, beliefs around health worsening, demographic
+data, and other information around health.</p>
+<p>We started by loading the datasets into R, and examining them to
+understand the structure of the data.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>Pclean <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;P.csv&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>Aclean <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;A.csv&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>Bclean <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;B.csv&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>Hclean <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;TaskData.csv&quot;</span>) <span class="co">#You will need to use the name of your &#39;H&#39; dataset here</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co">#It was clear that the H dataset has missing data compared to the other datasets, so we restructured this to make these easy to merge</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>Hclean<span class="sc">$</span>Region <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>,<span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>, <span class="st">&quot;H&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>Hclean<span class="sc">$</span>SES5 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>,<span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>Hclean<span class="sc">$</span>PH <span class="ot">&lt;-</span> Hclean<span class="sc">$</span>Physical</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>Hclean<span class="sc">$</span>MH <span class="ot">&lt;-</span>Hclean<span class="sc">$</span>Mental</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>Hclean <span class="ot">&lt;-</span> Hclean[,<span class="fu">c</span>(<span class="st">&quot;Age&quot;</span>, <span class="st">&quot;Gender&quot;</span>, <span class="st">&quot;Smoker&quot;</span>, <span class="st">&quot;PH&quot;</span>, <span class="st">&quot;MH&quot;</span>, <span class="st">&quot;Belief&quot;</span>, <span class="st">&quot;SES5&quot;</span>, <span class="st">&quot;Region&quot;</span>)]</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="fu">View</span>(Hclean)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>Bclean <span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&quot;B.csv&quot;</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">View</span>(Pclean)</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="fu">View</span>(Aclean)</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="fu">View</span>(Bclean)</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="fu">View</span>(Hclean)</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#Change all No values to N, Yes values to Y </span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>Pclean<span class="sc">$</span>PH[Pclean<span class="sc">$</span>PH <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>)]<span class="ot">=</span><span class="st">&quot;N&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>Pclean<span class="sc">$</span>PH[Pclean<span class="sc">$</span>PH <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Yes&quot;</span>)]<span class="ot">=</span><span class="st">&quot;Y&quot;</span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#Combining data </span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>total <span class="ot">&lt;-</span> <span class="fu">rbind</span>(Hclean, Pclean, Aclean)</span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="fu">View</span>(total)</span></code></pre></div>
 </div>
 <div id="descriptive-analysis" class="section level2">
 <h2>Descriptive Analysis</h2>
 </div>
-<div id="inferential-statistics" class="section level2">
-<h2>Inferential Statistics</h2>
+<div id="primary-task" class="section level2">
+<h2>Primary Task</h2>
+<div id="conduct-a-binomial-regression-hint-glm-function-to-assess-whether-individuals-with-on-going-health-issues-believe-their-condition-will-get-worse-while-waiting-for-treatment." class="section level3">
+<h3>Conduct a binomial regression (hint: glm() function) to assess
+whether individuals with on-going health issues believe their condition
+will get worse while waiting for treatment.</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># Coding ongoing health issues as 0 or 1 based on presence of physical or mental health issues coded</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>total<span class="sc">$</span>PH <span class="ot">=</span> <span class="fu">ifelse</span>(total<span class="sc">$</span>PH<span class="sc">==</span><span class="st">&quot;Y&quot;</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>total<span class="sc">$</span>MH <span class="ot">=</span> <span class="fu">ifelse</span>(total<span class="sc">$</span>MH<span class="sc">==</span><span class="st">&quot;Y&quot;</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>total<span class="sc">$</span>HI <span class="ot">=</span> total<span class="sc">$</span>PH <span class="sc">+</span> total<span class="sc">$</span>MH</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>total<span class="sc">$</span>HI <span class="ot">=</span> <span class="fu">ifelse</span>(total<span class="sc">$</span>HI<span class="sc">==</span><span class="dv">0</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>total<span class="sc">$</span>HI<span class="ot">=</span> <span class="fu">as.factor</span>(total<span class="sc">$</span>HI)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a>total<span class="sc">$</span>Belief <span class="ot">=</span> <span class="fu">ifelse</span>(total<span class="sc">$</span>Belief<span class="sc">==</span><span class="st">&quot;Y&quot;</span>, <span class="dv">1</span>,<span class="dv">0</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>total<span class="sc">$</span>Belief <span class="ot">=</span> <span class="fu">as.factor</span>(total<span class="sc">$</span>Belief)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Performing logistic regression model on health outcomes as a function of belief</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>binreg <span class="ot">=</span> <span class="fu">glm</span>(Belief <span class="sc">~</span> HI, <span class="at">data =</span> total, <span class="at">family=</span><span class="fu">binomial</span>(<span class="at">link=</span><span class="st">&quot;logit&quot;</span>))</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">summary</span>(binreg)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = Belief ~ HI, family = binomial(link = &quot;logit&quot;), 
+##     data = total)
+## 
+## Coefficients:
+##             Estimate Std. Error z value Pr(&gt;|z|)   
+## (Intercept) -0.95551    0.30382  -3.145  0.00166 **
+## HI1          0.05264    0.43128   0.122  0.90285   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 126.31  on 105  degrees of freedom
+## Residual deviance: 126.29  on 104  degrees of freedom
+## AIC: 130.29
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
 </div>
-<div id="conclusion" class="section level2">
-<h2>Conclusion</h2>
 </div>
-<div id="discussion" class="section level2">
-<h2>Discussion</h2>
+<div id="secondary-task" class="section level2">
+<h2>Secondary Task</h2>
+<p>Assess the prevalence of health issues in the cohort (adjusting for
+other factors?).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co">#Secondary analysis: assess the prevalence of health issues in the cohort </span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>table1<span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>MH, total) <span class="co">#Prevalence of MH </span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>table2 <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>PH, total) <span class="co">#Prevalence of PH </span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">print</span>(table1) </span></code></pre></div>
+<pre><code>## MH
+##  0  1 
+## 70 36</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">print</span>(table2)</span></code></pre></div>
+<pre><code>## PH
+##  0  1 
+## 79 27</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="co">#Adjust for other factors</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>smoking <span class="ot">&lt;-</span> <span class="fu">xtabs</span>(<span class="sc">~</span>MH<span class="sc">+</span>Smoker, total)</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>p_smoking <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(smoking)</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="fu">print</span>(p_smoking)</span></code></pre></div>
+<pre><code>##    Smoker
+## MH                Current          N          Y
+##   0 0.08490566 0.32075472 0.06603774 0.18867925
+##   1 0.06603774 0.10377358 0.05660377 0.11320755</code></pre>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJlcG9ydCINCmF1dGhvcjogIk5vUmVnaXRzIg0KZGF0ZTogImByIFN5cy5EYXRlKClgIg0Kb3V0cHV0Og0KICBodG1sX2RvY3VtZW50Og0KICAgIHRoZW1lOiBmbGF0bHkNCiAgICBoaWdobGlnaHQ6IHplbmJ1cm4NCiAgICBjb2RlX2Rvd25sb2FkOiB0cnVlDQogICAgY29kZV9mb2xkaW5nOiBzaG93DQogICAgdG9jOiB0cnVlDQogICAgdG9jX2Zsb2F0OiB0cnVlDQogIHBkZl9kb2N1bWVudDoNCiAgICB0b2M6IHRydWUNCiAgd29yZF9kb2N1bWVudDoNCiAgICB0b2M6IHRydWUNCi0tLQ0KDQpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0NCmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkNCmBgYA0KDQojIyBSZXBvcnQNCg0KIyMgQ2xlYW5pbmcNCg0KIyMgRGVzY3JpcHRpdmUgQW5hbHlzaXMNCg0KIyMgSW5mZXJlbnRpYWwgU3RhdGlzdGljcw0KDQojIyBDb25jbHVzaW9uDQoNCiMjIERpc2N1c3Npb24NCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkRvIGluZGl2aWR1YWxzIHdpdGggb25nb2luZyBoZWFsdGggaXNzdWVzIGJlbGlldmUgdGhlaXIgY29uZGl0aW9uIHdpbGwgZ2V0IHdvcnNlIHdoaWxlIHdhaXRpbmcgZm9yIHRyZWF0bWVudD8iDQphdXRob3I6ICJOb1JlZ2l0cyINCmRhdGU6ICJgciBTeXMuRGF0ZSgpYCINCm91dHB1dDoNCiAgaHRtbF9kb2N1bWVudDoNCiAgICB0aGVtZTogZmxhdGx5DQogICAgaGlnaGxpZ2h0OiB6ZW5idXJuDQogICAgY29kZV9kb3dubG9hZDogdHJ1ZQ0KICAgIGNvZGVfZm9sZGluZzogc2hvdw0KICAgIHRvYzogdHJ1ZQ0KICAgIHRvY19mbG9hdDogdHJ1ZQ0KICBwZGZfZG9jdW1lbnQ6DQogICAgdG9jOiB0cnVlDQogIHdvcmRfZG9jdW1lbnQ6DQogICAgdG9jOiB0cnVlDQotLS0NCg0KYGBge3Igc2V0dXAsIGluY2x1ZGU9RkFMU0V9DQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpDQpgYGANCg0KIyMgQ2xlYW5pbmcNCg0KV2Ugd2VyZSBnaXZlbiA0IGRhdGFzZXRzIHdoaWNoIGNvbnNpc3RlZCBvZiBkYXRhIGFyb3VuZCBwaHlzaWNhbCBoZWFsdGgsIG1lbnRhbCBoZWFsdGgsIGJlbGllZnMgYXJvdW5kIGhlYWx0aCB3b3JzZW5pbmcsIGRlbW9ncmFwaGljIGRhdGEsIGFuZCBvdGhlciBpbmZvcm1hdGlvbiBhcm91bmQgaGVhbHRoLg0KDQpXZSBzdGFydGVkIGJ5IGxvYWRpbmcgdGhlIGRhdGFzZXRzIGludG8gUiwgYW5kIGV4YW1pbmluZyB0aGVtIHRvIHVuZGVyc3RhbmQgdGhlIHN0cnVjdHVyZSBvZiB0aGUgZGF0YS4NCg0KYGBge3J9DQoNClBjbGVhbiA8LSByZWFkLmNzdigiUC5jc3YiKQ0KQWNsZWFuIDwtIHJlYWQuY3N2KCJBLmNzdiIpDQpCY2xlYW4gPC0gcmVhZC5jc3YoIkIuY3N2IikNCkhjbGVhbiA8LSByZWFkLmNzdigiVGFza0RhdGEuY3N2IikgI1lvdSB3aWxsIG5lZWQgdG8gdXNlIHRoZSBuYW1lIG9mIHlvdXIgJ0gnIGRhdGFzZXQgaGVyZQ0KDQpgYGANCg0KYGBge3J9DQoNCiNJdCB3YXMgY2xlYXIgdGhhdCB0aGUgSCBkYXRhc2V0IGhhcyBtaXNzaW5nIGRhdGEgY29tcGFyZWQgdG8gdGhlIG90aGVyIGRhdGFzZXRzLCBzbyB3ZSByZXN0cnVjdHVyZWQgdGhpcyB0byBtYWtlIHRoZXNlIGVhc3kgdG8gbWVyZ2UNCg0KSGNsZWFuJFJlZ2lvbiA8LSBjKCJIIiwgIkgiLCAiSCIsICJIIiwgIkgiLCAiSCIsICJIIiwgIkgiLCAiSCIsICJIIiwgIkgiLCAiSCIsIkgiLCAiSCIsICJIIiwgIkgiLCAiSCIsICJIIikNCg0KSGNsZWFuJFNFUzUgPC0gYygiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCIiLCAiIiwgIiIsICIiLCAiIiwgIiIpDQpIY2xlYW4kUEggPC0gSGNsZWFuJFBoeXNpY2FsDQpIY2xlYW4kTUggPC1IY2xlYW4kTWVudGFsDQpIY2xlYW4gPC0gSGNsZWFuWyxjKCJBZ2UiLCAiR2VuZGVyIiwgIlNtb2tlciIsICJQSCIsICJNSCIsICJCZWxpZWYiLCAiU0VTNSIsICJSZWdpb24iKV0NCg0KVmlldyhIY2xlYW4pDQoNCkJjbGVhbiA8LXJlYWQuY3N2KCJCLmNzdiIpDQoNClZpZXcoUGNsZWFuKQ0KVmlldyhBY2xlYW4pDQpWaWV3KEJjbGVhbikNClZpZXcoSGNsZWFuKQ0KDQojQ2hhbmdlIGFsbCBObyB2YWx1ZXMgdG8gTiwgWWVzIHZhbHVlcyB0byBZIA0KUGNsZWFuJFBIW1BjbGVhbiRQSCAlaW4lIGMoIk5vIildPSJOIg0KUGNsZWFuJFBIW1BjbGVhbiRQSCAlaW4lIGMoIlllcyIpXT0iWSINCg0KI0NvbWJpbmluZyBkYXRhIA0KDQp0b3RhbCA8LSByYmluZChIY2xlYW4sIFBjbGVhbiwgQWNsZWFuKQ0KVmlldyh0b3RhbCkNCmBgYA0KDQojIyBEZXNjcmlwdGl2ZSBBbmFseXNpcw0KDQojIyBQcmltYXJ5IFRhc2sNCg0KIyMjIENvbmR1Y3QgYSBiaW5vbWlhbCByZWdyZXNzaW9uIChoaW50OiBnbG0oKSBmdW5jdGlvbikgdG8gYXNzZXNzIHdoZXRoZXIgaW5kaXZpZHVhbHMgd2l0aCBvbi1nb2luZyBoZWFsdGggaXNzdWVzIGJlbGlldmUgdGhlaXIgY29uZGl0aW9uIHdpbGwgZ2V0IHdvcnNlIHdoaWxlIHdhaXRpbmcgZm9yIHRyZWF0bWVudC4NCg0KYGBge3J9DQojIENvZGluZyBvbmdvaW5nIGhlYWx0aCBpc3N1ZXMgYXMgMCBvciAxIGJhc2VkIG9uIHByZXNlbmNlIG9mIHBoeXNpY2FsIG9yIG1lbnRhbCBoZWFsdGggaXNzdWVzIGNvZGVkDQp0b3RhbCRQSCA9IGlmZWxzZSh0b3RhbCRQSD09IlkiLCAxLDApDQp0b3RhbCRNSCA9IGlmZWxzZSh0b3RhbCRNSD09IlkiLCAxLDApDQp0b3RhbCRISSA9IHRvdGFsJFBIICsgdG90YWwkTUgNCnRvdGFsJEhJID0gaWZlbHNlKHRvdGFsJEhJPT0wLCAxLDApDQp0b3RhbCRIST0gYXMuZmFjdG9yKHRvdGFsJEhJKQ0KdG90YWwkQmVsaWVmID0gaWZlbHNlKHRvdGFsJEJlbGllZj09IlkiLCAxLDApDQp0b3RhbCRCZWxpZWYgPSBhcy5mYWN0b3IodG90YWwkQmVsaWVmKQ0KDQpgYGANCg0KYGBge3J9DQoNCiMgUGVyZm9ybWluZyBsb2dpc3RpYyByZWdyZXNzaW9uIG1vZGVsIG9uIGhlYWx0aCBvdXRjb21lcyBhcyBhIGZ1bmN0aW9uIG9mIGJlbGllZg0KDQpiaW5yZWcgPSBnbG0oQmVsaWVmIH4gSEksIGRhdGEgPSB0b3RhbCwgZmFtaWx5PWJpbm9taWFsKGxpbms9ImxvZ2l0IikpDQpzdW1tYXJ5KGJpbnJlZykNCmBgYA0KDQojIyBTZWNvbmRhcnkgVGFzaw0KDQpBc3Nlc3MgdGhlIHByZXZhbGVuY2Ugb2YgaGVhbHRoIGlzc3VlcyBpbiB0aGUgY29ob3J0IChhZGp1c3RpbmcgZm9yIG90aGVyIGZhY3RvcnM/KS4NCg0KYGBge3J9DQoNCiNTZWNvbmRhcnkgYW5hbHlzaXM6IGFzc2VzcyB0aGUgcHJldmFsZW5jZSBvZiBoZWFsdGggaXNzdWVzIGluIHRoZSBjb2hvcnQgDQp0YWJsZTE8LSB4dGFicyh+TUgsIHRvdGFsKSAjUHJldmFsZW5jZSBvZiBNSCANCnRhYmxlMiA8LSB4dGFicyh+UEgsIHRvdGFsKSAjUHJldmFsZW5jZSBvZiBQSCANCnByaW50KHRhYmxlMSkgDQpwcmludCh0YWJsZTIpDQoNCiNBZGp1c3QgZm9yIG90aGVyIGZhY3RvcnMNCnNtb2tpbmcgPC0geHRhYnMofk1IK1Ntb2tlciwgdG90YWwpDQpwX3Ntb2tpbmcgPC0gcHJvcC50YWJsZShzbW9raW5nKQ0KcHJpbnQocF9zbW9raW5nKQ0KDQpgYGANCg==</div>
 
 
 </div>
