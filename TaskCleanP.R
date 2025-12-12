@@ -1,3 +1,5 @@
+library(ggplot2)
+
 Pclean <- read.csv("P.csv")
 Aclean = read.csv("A.csv")
 Hclean <- read.csv("TaskData.csv")
@@ -23,9 +25,25 @@ Pclean$PH[Pclean$PH %in% c("No")]="N"
 Pclean$PH[Pclean$PH %in% c("Yes")]="Y"
 
 #Combining data 
-
 total <- rbind(Hclean, Pclean, Aclean)
 View(total)
+
+
+#Secondary analysis: assess the prevalence of health issues in the cohort 
+table1<- xtabs(~MH, total) #Prevalence of MH 
+table2 <- xtabs(~PH, total) #Prevalence of PH 
+print(table1) 
+print(table2)
+
+#Adjust for other factors
+smoking <- xtabs(~MH+Smoker, total)
+p_smoking <- prop.table(smoking)
+print(p_smoking)
+
+
+
+
+
 
 
 
