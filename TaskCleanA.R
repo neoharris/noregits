@@ -33,7 +33,14 @@ total$MH = ifelse(total$MH=="Y", 1,0)
 total$HI = total$PH + total$MH
 total$HI = ifelse(total$HI==0, 1,0)
 total$HI= as.factor(total$HI)
+total$Belief = ifelse(total$Belief=="Y", 1,0)
+total$Belief = as.factor(total$Belief)
 
 colnames(total)
-binreg = glm(HI ~ Belief, data = total, family=binomial(link="logit"))
+binreg = glm(Belief ~ HI, data = total, family=binomial(link="logit"))
 summary(binreg)
+
+
+
+
+
