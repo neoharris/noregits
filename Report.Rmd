@@ -47,9 +47,6 @@ Hclean$MH <-Hclean$Mental
 Hclean <- Hclean[,c("Age", "Gender", "Smoker", "PH", "MH", "Belief", "SES5", "Region")]
 
 View(Hclean)
-
-Bclean <-read.csv("B.csv")
-
 View(Pclean)
 View(Aclean)
 View(Bclean)
@@ -59,13 +56,19 @@ View(Hclean)
 Pclean$PH[Pclean$PH %in% c("No")]="N"
 Pclean$PH[Pclean$PH %in% c("Yes")]="Y"
 
+
+```
+
+We decided to not use B due to the low age of the participants - we were unsure of the quality of data, and whether children this age could validly have concerns over their health.
+
+```{r}
+
 #Combining data 
+# We decided to not use B due to the low age reported - unsure of quality of data
 
 total <- rbind(Hclean, Pclean, Aclean)
 View(total)
 ```
-
-## Descriptive Analysis
 
 ## Primary Task
 
