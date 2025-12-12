@@ -39,11 +39,11 @@ Hclean <- read.csv("TaskData.csv") #You will need to use the name of your 'H' da
 
 #It was clear that the H dataset has missing data compared to the other datasets, so we restructured this to make these easy to merge
 
+Hclean$PH <- Hclean$Physical
+Hclean$MH <-Hclean$Mental
 Hclean$Region <- c("H", "H", "H", "H", "H", "H", "H", "H", "H", "H", "H", "H","H", "H", "H", "H", "H", "H")
 
 Hclean$SES5 <- c("", "", "", "", "", "", "", "", "", "", "", "","", "", "", "", "", "")
-Hclean$PH <- Hclean$Physical
-Hclean$MH <-Hclean$Mental
 Hclean <- Hclean[,c("Age", "Gender", "Smoker", "PH", "MH", "Belief", "SES5", "Region")]
 
 View(Hclean)
